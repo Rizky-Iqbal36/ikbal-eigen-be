@@ -28,7 +28,7 @@ export class BookRepository extends Repository<BookModel> {
         'b.title AS title',
         'b.author AS author',
         'b.stocks AS stocks',
-        'SUM(IF(bh.status = "BORROWED", 1, 0)) AS borrowed',
+        "SUM(IF(bh.status = 'BORROWED', 1, 0)) AS borrowed",
       ])
       .leftJoin(BorrowHistoryModel, 'bh', 'b.id = bh.bookId')
       .where(id ? `b.id = ${id}` : 'TRUE')

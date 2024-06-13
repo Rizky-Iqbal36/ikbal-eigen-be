@@ -16,7 +16,7 @@ export class MemberRepository extends Repository<MemberModel> {
         'm.id AS id',
         'm.code AS code',
         'm.name AS name',
-        'SUM(IF(bh.status = "BORROWED", 1, 0)) AS borrowed',
+        "SUM(IF(bh.status = 'BORROWED', 1, 0)) AS borrowed",
       ])
       .leftJoin(BorrowHistoryModel, 'bh', 'bh.userId = m.id')
       .groupBy('m.id')

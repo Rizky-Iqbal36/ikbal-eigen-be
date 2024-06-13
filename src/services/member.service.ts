@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
 import { MemberRepository } from '@repository/member.repository';
-import { zeroPad } from '@src/app/utils/modifier';
+
+import cryptography from '@app/utils/cryptography';
+import { zeroPad } from '@app/utils/modifier';
 
 @Injectable()
 export class MemberService {
@@ -13,11 +15,14 @@ export class MemberService {
       name,
       code,
     });
+    const userId = raw.insertId;
+    const token = cryptography.generateToken(userId);
 
     return {
       user: {
-        id: raw.insertId,
+        id: userId,
         code,
+        token,
       },
     };
   }

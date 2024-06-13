@@ -1,4 +1,7 @@
 import { Response } from 'express';
+
+import { MemberModel } from '@database/models/member.model';
+
 import { EFlag } from './enum';
 
 /* ---------------------------- Typescript Helper --------------------------- */
@@ -11,7 +14,7 @@ export type IObjMerger<T> = IObject & T;
 /* ------------------------ Request Response Related ------------------------ */
 export interface IResponse extends Response {
   locals: IObjMerger<{
-    user: { uid: number; name: string };
+    user: { uid: number; name: string; status: MemberModel['status'] };
   }>;
 }
 /* --------------------- End of Request Response Related -------------------- */

@@ -30,12 +30,13 @@ export default class AuthMiddleware implements NestMiddleware {
       const verified = cryptography.verifyToken(token) as any;
       user = await this.memberRepositry.findOne({
         where: { id: verified.uid },
-        select: ['name'],
+        select: ['name', 'status'],
       });
       if (user)
         res.locals.user = {
           uid: verified.uid,
           name: user.name,
+          status: user.status,
         };
     } catch (err: any) {
       throw new BadRequest(

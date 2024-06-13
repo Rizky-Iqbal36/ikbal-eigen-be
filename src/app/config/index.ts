@@ -56,6 +56,7 @@ export const dbConfig = (() => {
     moduleOption: {
       type: 'mysql',
       port: parseInt((process.env as any)[`${dbPrefix}_DB_PORT`]) || 3306,
+      // synchronize: true,
       synchronize: appEnv === 'test', // Syncronize only true if app env is test, don't use actual database while app env is test
       ...(socketPath && !['test', 'development'].includes(appEnv)
         ? { socketPath }

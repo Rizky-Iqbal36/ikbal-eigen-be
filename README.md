@@ -11,5 +11,5 @@
   - [x] Shows all existing books and quantities
   - [x] Books that are being borrowed are not counted
 - Member check
-  - [ ] Shows all existing members
-  - [ ] The number of books being borrowed by each member
+  - [x] Shows all existing members
+  - [x] The number of books being borrowed by each member

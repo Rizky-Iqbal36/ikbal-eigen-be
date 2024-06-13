@@ -10,6 +10,11 @@ import { EFlag } from '@src/interfaces/enum';
 @Injectable()
 export class MemberService {
   constructor(private readonly memberRepository: MemberRepository) {}
+  public async getMembers() {
+    const users = await this.memberRepository.getMembersWithRecords();
+    return { data: users };
+  }
+
   async createMember(name: string) {
     const countUser = await this.memberRepository.count();
     const code = `M${zeroPad(countUser + 1, 3)}`;

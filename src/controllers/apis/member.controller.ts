@@ -12,6 +12,11 @@ export class MemberController extends BaseController {
     super();
   }
 
+  @Get()
+  async getMembers() {
+    return this.memberService.getMembers();
+  }
+
   @Post()
   async createMember(@Req() req: Request) {
     const body = req.body;

@@ -14,6 +14,11 @@ export class BookController extends BaseController {
     super();
   }
 
+  @Get()
+  async getBooks() {
+    return this.bookService.getBooks();
+  }
+
   @Post('borrow')
   async borrowBook(@Req() req: Request, @Res() res: IResponse) {
     const body = req.body;

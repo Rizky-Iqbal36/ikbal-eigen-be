@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import moment from 'moment';
 import { Injectable } from '@nestjs/common';
 
@@ -28,6 +29,25 @@ export class BookService {
         { message: 'You are not allowed to borrow book' },
       );
     return user.uid;
+  }
+
+  public async getBooks() {
+    const bookRecords =
+      await this.bookRepository.getBookWithRecords<undefined>();
+    const bookRecordsHaveStock = _.filter(
+      bookRecords,
+      ({ borrowed, stocks }) => Number(borrowed) < stocks,
+    );
+    return {
+      data: bookRecordsHaveStock.map(({ code, title, author, stocks }) => {
+        return {
+          code,
+          title,
+          author,
+          stocks,
+        };
+      }),
+    };
   }
 
   public async borrowBook(bookId: number, user: IResponse['locals']['user']) {

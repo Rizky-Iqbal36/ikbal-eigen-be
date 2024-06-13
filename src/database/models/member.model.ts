@@ -17,8 +17,8 @@ export class MemberModel {
   @Column({ default: null, nullable: true })
   code: string;
 
-  @Column({ type: 'enum', enum: ['ACTIVE', 'PENALTY'], default: 'ACTIVE' })
-  status: 'ACTIVE' | 'PENALTY';
+  @Column({ type: 'datetime', default: null, nullable: true })
+  penaltyExpireDate: string;
 
   @CreateDateColumn()
   createdDate: string;

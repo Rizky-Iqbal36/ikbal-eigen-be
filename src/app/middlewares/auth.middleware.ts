@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Request, NextFunction } from 'express';
 
 import { NestMiddleware, Injectable } from '@nestjs/common';
@@ -30,14 +31,21 @@ export default class AuthMiddleware implements NestMiddleware {
       const verified = cryptography.verifyToken(token) as any;
       user = await this.memberRepositry.findOne({
         where: { id: verified.uid },
-        select: ['name', 'status'],
+        select: ['name', 'penaltyExpireDate'],
       });
-      if (user)
+      if (user) {
+        const penaltyExpireDate = user.penaltyExpireDate;
+        const userStatus =
+          penaltyExpireDate && moment().isSameOrBefore(penaltyExpireDate)
+            ? 'PENALTY'
+            : 'ACTIVE';
+
         res.locals.user = {
           uid: verified.uid,
           name: user.name,
-          status: user.status,
+          status: userStatus,
         };
+      }
     } catch (err: any) {
       throw new BadRequest(
         { flag: EFlag.INVALID_JWT, reason: err.message },

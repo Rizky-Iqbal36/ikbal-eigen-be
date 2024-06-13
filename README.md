@@ -5,8 +5,8 @@
   - [x] Borrowed books are not borrowed by other members
   - [x] Member is currently not being penalized
 - Member returns the book with conditions
-  - [ ] The returned book is a book that the member has borrowed
-  - [ ] If the book is returned after more than 7 days, the member will be subject to a penalty. Member with penalty cannot able to borrow the book for 3 days
+  - [x] The returned book is a book that the member has borrowed
+  - [x] If the book is returned after more than 7 days, the member will be subject to a penalty. Member with penalty cannot able to borrow the book for 3 days
 - Check the book
   - [ ] Shows all existing books and quantities
   - [ ] Books that are being borrowed are not counted

@@ -18,8 +18,11 @@ export class BookService {
     private readonly memberRepository: MemberRepository,
   ) {}
 
-  private checkUser(user: IResponse['locals']['user']) {
-    if (user.status !== 'ACTIVE')
+  private checkUser(
+    user: IResponse['locals']['user'],
+    byPass: boolean = false,
+  ) {
+    if (!byPass && user.status !== 'ACTIVE')
       throw new BadRequest(
         { flag: EFlag.BAD_REQUEST },
         { message: 'You are not allowed to borrow book' },
@@ -30,10 +33,7 @@ export class BookService {
   public async borrowBook(bookId: number, user: IResponse['locals']['user']) {
     const userId = this.checkUser(user);
 
-    const bookRecords = await this.bookRepository.getBookWithRecords(
-      bookId,
-      'BORROWED',
-    );
+    const bookRecords = await this.bookRepository.getBookWithRecords(bookId);
     if (!bookRecords)
       throw new NotFound(
         { flag: EFlag.RESOURCE_NOT_FOUND },
@@ -73,7 +73,7 @@ export class BookService {
   }
 
   public async returnBook(bookId: number, user: IResponse['locals']['user']) {
-    const userId = this.checkUser(user);
+    const userId = this.checkUser(user, true);
     const book = await this.bookRepository.findOne({ where: { id: bookId } });
     if (!book)
       throw new NotFound(
@@ -91,11 +91,14 @@ export class BookService {
         { flag: EFlag.BAD_REQUEST },
         { message: 'You not borrow this book yet' },
       );
+
     const borrowedDate = userBookHistory.createdDate;
     const differDay = moment().diff(borrowedDate, 'days');
     if (differDay > 7) {
-      // await this.memberRepository.update({ id: userId }, { status: 'PENALTY' });
-      // add penalty expire date
+      const penaltyExpireDate = moment()
+        .add(3, 'days')
+        .format('YYYY-MM-DD HH:mm:ss');
+      await this.memberRepository.update({ id: userId }, { penaltyExpireDate });
     }
     await this.bookHistoryRepository.update(
       { userId, bookId, status: 'BORROWED' },

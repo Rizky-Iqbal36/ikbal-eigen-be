@@ -9,6 +9,20 @@ export class BookHistoryRepository extends Repository<BorrowHistoryModel> {
     super(BorrowHistoryModel, dataSource.createEntityManager());
   }
 
+  public async userBookHistory(
+    userId: number,
+    bookId: number,
+    status?: BorrowHistoryModel['status'],
+  ) {
+    return this.count({
+      where: {
+        bookId,
+        userId,
+        ...(status && { status }),
+      },
+    });
+  }
+
   public async userTotalHistory(
     userId: number,
     status?: BorrowHistoryModel['status'],

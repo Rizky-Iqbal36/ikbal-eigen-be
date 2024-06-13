@@ -21,6 +21,7 @@ export class BookService {
         { flag: EFlag.BAD_REQUEST },
         { message: 'You are not allowed to borrow book' },
       );
+    const userId = user.uid;
 
     const bookRecords = await this.bookRepository.getBookWithRecords(id);
     if (!bookRecords)
@@ -34,8 +35,18 @@ export class BookService {
         { message: 'Stock Empty' },
       );
 
-    const userTotalBorrow = await this.bookHistoryRepository.userTotalHistory(
+    const userBookHistory = await this.bookHistoryRepository.userBookHistory(
+      userId,
       id,
+      'BORROWED',
+    );
+    if (userBookHistory >= 1)
+      throw new BadRequest(
+        { flag: EFlag.BAD_REQUEST },
+        { message: 'You Already borrow this book' },
+      );
+    const userTotalBorrow = await this.bookHistoryRepository.userTotalHistory(
+      userId,
       'BORROWED',
     );
     if (userTotalBorrow >= 2)
@@ -43,7 +54,7 @@ export class BookService {
         { flag: EFlag.BAD_REQUEST },
         { message: 'Max borrow book reached' },
       );
-    await this.bookHistoryRepository.insert({ bookId: id, userId: user.uid });
+    await this.bookHistoryRepository.insert({ bookId: id, userId });
 
     return {
       message: 'Book borrowed',

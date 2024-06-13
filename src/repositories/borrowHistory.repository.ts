@@ -14,7 +14,7 @@ export class BookHistoryRepository extends Repository<BorrowHistoryModel> {
     bookId: number,
     status?: BorrowHistoryModel['status'],
   ) {
-    return this.count({
+    return this.findOne({
       where: {
         bookId,
         userId,

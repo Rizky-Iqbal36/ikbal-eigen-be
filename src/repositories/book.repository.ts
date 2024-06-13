@@ -10,11 +10,15 @@ export class BookRepository extends Repository<BookModel> {
     super(BookModel, dataSource.createEntityManager());
   }
 
-  public async getBookWithRecords(id: number) {
+  public async getBookWithRecords(
+    id: number,
+    status?: BorrowHistoryModel['status'],
+  ) {
     return this.createQueryBuilder('b')
       .select(['b.id As id', 'b.stocks AS stocks', 'COUNT(bh.id) AS borrowed'])
       .leftJoin(BorrowHistoryModel, 'bh', 'b.id = bh.bookId')
       .where(`b.id = ${id}`)
+      .andWhere(status ? `bh.status = "${status}"` : 'TRUE')
       .groupBy('b.id')
       .getRawOne<{ id: number; stocks: number; borrowed: number }>();
   }

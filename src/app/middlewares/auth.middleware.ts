@@ -12,7 +12,7 @@ import { MemberRepository } from '@repository/member.repository';
 
 @Injectable()
 export default class AuthMiddleware implements NestMiddleware {
-  constructor(private readonly userRepositry: MemberRepository) {}
+  constructor(private readonly memberRepositry: MemberRepository) {}
 
   async use(req: Request, res: IResponse, next: NextFunction) {
     let header, token;
@@ -28,7 +28,7 @@ export default class AuthMiddleware implements NestMiddleware {
     let user;
     try {
       const verified = cryptography.verifyToken(token) as any;
-      user = await this.userRepositry.findOne({
+      user = await this.memberRepositry.findOne({
         where: { id: verified.uid },
         select: ['name'],
       });

@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import Joi, { ObjectSchema } from 'joi';
-import { Controller, Req, Post } from '@nestjs/common';
+import { Controller, Req, Post, Get } from '@nestjs/common';
 
 import { MemberService } from '@service/member.service';
 import { BaseController } from '../base.controller';
@@ -20,5 +20,15 @@ export class MemberController extends BaseController {
     }).unknown();
     await this.validateReq(validationSchema, body, EFlag.INVALID_BODY);
     return this.memberService.createMember(body.name);
+  }
+
+  @Get('token')
+  async getMemberToken(@Req() req: Request) {
+    const { id } = req.query;
+    const validationSchema: ObjectSchema = Joi.object({
+      id: Joi.number().required(),
+    }).unknown();
+    await this.validateReq(validationSchema, req.query, EFlag.INVALID_PARAM);
+    return this.memberService.generateToken(Number(id));
   }
 }

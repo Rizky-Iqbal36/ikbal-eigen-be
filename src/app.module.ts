@@ -26,6 +26,7 @@ export class AppModule {
       .apply(AuthMiddleware)
       .exclude(
         { path: '/member', method: RequestMethod.POST },
+        { path: '/member/token', method: RequestMethod.GET },
         { path: '', method: RequestMethod.ALL },
       )
       .forRoutes({ path: '*', method: RequestMethod.ALL });

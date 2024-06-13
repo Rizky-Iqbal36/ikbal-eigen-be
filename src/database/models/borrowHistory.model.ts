@@ -6,19 +6,19 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'member' })
-export class MemberModel {
+@Entity({ name: 'borrow_history' })
+export class BorrowHistoryModel {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  bookId: number;
 
-  @Column({ default: null, nullable: true })
-  code: string;
+  @Column()
+  userId: number;
 
-  @Column({ type: 'enum', enum: ['ACTIVE', 'PENALTY'], default: 'ACTIVE' })
-  status: 'ACTIVE' | 'PENALTY';
+  @Column({ type: 'enum', enum: ['BORROWED', 'RETURNED'], default: 'BORROWED' })
+  status: 'BORROWED' | 'RETURNED';
 
   @CreateDateColumn()
   createdDate: string;

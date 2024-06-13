@@ -6,19 +6,22 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'member' })
-export class MemberModel {
+@Entity({ name: 'book' })
+export class BookModel {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
-
-  @Column({ default: null, nullable: true })
   code: string;
 
-  @Column({ type: 'enum', enum: ['ACTIVE', 'PENALTY'], default: 'ACTIVE' })
-  status: 'ACTIVE' | 'PENALTY';
+  @Column()
+  title: string;
+
+  @Column()
+  author: string;
+
+  @Column()
+  stocks: number;
 
   @CreateDateColumn()
   createdDate: string;

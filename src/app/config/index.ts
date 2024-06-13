@@ -47,7 +47,7 @@ export const dbConfig = (() => {
   const socketPath = process.env.INSTANCE_CONNECTION_NAME;
   return {
     databases: {
-      aha: {
+      eigen: {
         database: process.env[`${dbPrefix}_DB_NAME`] as string,
         username: process.env[`${dbPrefix}_DB_USER`] as string,
         password: process.env[`${dbPrefix}_DB_PASS`] as string,
@@ -56,7 +56,7 @@ export const dbConfig = (() => {
     moduleOption: {
       type: 'mysql',
       port: parseInt((process.env as any)[`${dbPrefix}_DB_PORT`]) || 3306,
-      synchronize: appEnv === 'test', // Syncronize only true if app env is test, don't use actual database while app env is test
+      synchronize: true,//appEnv === 'test', // Syncronize only true if app env is test, don't use actual database while app env is test
       ...(socketPath && !['test', 'development'].includes(appEnv)
         ? { socketPath }
         : { host }),

@@ -5,12 +5,15 @@ import TransformInterceptor from '@app/interceptor';
 
 import controllers from './controllers';
 import services from './services';
+import repositories from './repositories';
+import { databaseEigen } from './database';
 
 @Module({
-  imports: [],
+  imports: [databaseEigen],
   controllers,
   providers: [
     ...services,
+    ...repositories,
     { provide: APP_FILTER, useClass: ExceptionsFilter },
     { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
   ],

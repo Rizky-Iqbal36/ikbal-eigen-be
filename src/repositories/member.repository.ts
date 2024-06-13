@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 
-import { MemberModel } from '@database/models/member.model';
-import { BorrowHistoryModel } from '@database/models/borrowHistory.model';
+import { MemberModel } from '../database/models/member.model';
+import { BorrowHistoryModel } from '../database/models/borrowHistory.model';
 
 @Injectable()
 export class MemberRepository extends Repository<MemberModel> {

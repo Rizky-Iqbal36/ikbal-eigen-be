@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { EDbPrefix } from '@src/interfaces/enum';
+import { EDbPrefix } from '../../interfaces/enum';
 
 config();
 const validNodeEnv = ['development', 'test', 'staging', 'production'];

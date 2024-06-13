@@ -17,14 +17,6 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "paths": {
-      "@src/*": ["./src/*"],
-      "@app/*": ["./src/app/*"],
-      "@database/*": ["./src/database/*"],
-      "@controller/*": ["./src/controllers/*"],
-      "@service/*": ["./src/services/*"],
-      "@repository/*": ["./src/repositories/*"]
-    }
+    "noFallthroughCasesInSwitch": false
   }
 }

@@ -1,14 +1,14 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import ExceptionsFilter from '@app/exception/filter';
-import TransformInterceptor from '@app/interceptor';
+import ExceptionsFilter from './app/exception/filter';
+import TransformInterceptor from './app/interceptor';
 
 import controllers from './controllers';
 import services from './services';
 import repositories from './repositories';
 import { databaseEigen } from './database';
 
-import AuthMiddleware from '@app/middlewares/auth.middleware';
+import AuthMiddleware from './app/middlewares/auth.middleware';
 
 @Module({
   imports: [databaseEigen],

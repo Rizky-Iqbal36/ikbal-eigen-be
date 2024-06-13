@@ -2,14 +2,14 @@ import _ from 'lodash';
 import moment from 'moment';
 import { Injectable } from '@nestjs/common';
 
-import { BookRepository } from '@repository/book.repository';
-import { BookHistoryRepository } from '@repository/borrowHistory.repository';
-import { MemberRepository } from '@src/repositories/member.repository';
+import { BookRepository } from '../repositories/book.repository';
+import { BookHistoryRepository } from '../repositories/borrowHistory.repository';
+import { MemberRepository } from '../repositories/member.repository';
 
-import { BadRequest, NotFound } from '@app/exception';
+import { BadRequest, NotFound } from '../app/exception';
 
-import { IResponse } from '@src/interfaces';
-import { EFlag } from '@src/interfaces/enum';
+import { IResponse } from '../interfaces';
+import { EFlag } from '../interfaces/enum';
 
 @Injectable()
 export class BookService {

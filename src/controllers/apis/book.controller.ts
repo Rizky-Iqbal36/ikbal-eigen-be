@@ -2,11 +2,11 @@ import { Request } from 'express';
 import Joi, { ObjectSchema } from 'joi';
 import { Controller, Req, Post, Get, Res } from '@nestjs/common';
 
-import { BookService } from '@service/book.service';
+import { BookService } from '../../services/book.service';
 
 import { BaseController } from '../base.controller';
-import { EFlag } from '@src/interfaces/enum';
-import { IResponse } from '@src/interfaces';
+import { EFlag } from '../../interfaces/enum';
+import { IResponse } from '../../interfaces';
 
 @Controller('book')
 export class BookController extends BaseController {

@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import appConfig from '@app/config';
+import appConfig from '../config';
 import Jwt from 'jsonwebtoken';
 
 const { auth } = appConfig;

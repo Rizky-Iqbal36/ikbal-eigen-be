@@ -3,13 +3,13 @@ import { Request, NextFunction } from 'express';
 
 import { NestMiddleware, Injectable } from '@nestjs/common';
 
-import { IResponse } from '@src/interfaces';
-import { EFlag } from '@src/interfaces/enum';
+import { IResponse } from '../../interfaces';
+import { EFlag } from '../../interfaces/enum';
 
-import { Unauthorized, BadRequest, Forbidden } from '@app/exception';
-import cryptography from '@app/utils/cryptography';
+import { Unauthorized, BadRequest, Forbidden } from '../exception';
+import cryptography from '../utils/cryptography';
 
-import { MemberRepository } from '@repository/member.repository';
+import { MemberRepository } from '../../repositories/member.repository';
 
 @Injectable()
 export default class AuthMiddleware implements NestMiddleware {

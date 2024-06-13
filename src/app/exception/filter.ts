@@ -2,10 +2,10 @@ import { Request } from 'express';
 import _ from 'lodash'
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger } from '@nestjs/common';
 
-import { EFlag } from '@src/interfaces/enum';
+import { IResponse } from '../../interfaces';
+import { EFlag } from '../../interfaces/enum';
 
-import { CustomHttpException } from '@app/exception';
-import { IResponse } from '@src/interfaces';
+import { CustomHttpException } from './index';
 
 @Catch(HttpException, Error)
 export default class ExceptionsFilter implements ExceptionFilter {

@@ -1,7 +1,7 @@
 import { ObjectSchema } from 'joi';
 import _ from 'lodash';
-import { BadRequest } from '@app/exception';
-import { EFlag } from '@src/interfaces/enum';
+import { BadRequest } from '../app/exception';
+import { EFlag } from '../interfaces/enum';
 
 export class BaseController {
   public async validateReq(schema: ObjectSchema, payload: any, flag: EFlag = EFlag.INVALID_BODY) {

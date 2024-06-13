@@ -1,7 +1,7 @@
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
-import { dbConfig } from '@app/config';
+import { dbConfig } from '../app/config';
 const { databases, moduleOption } = dbConfig;
 
 import { MemberModel } from './models/member.model';

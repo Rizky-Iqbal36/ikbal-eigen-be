@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 
-import appConfig from '@app/config';
-import TransformInterceptor from '@app/interceptor';
+import appConfig from './app/config';
+import TransformInterceptor from './app/interceptor';
 
-import { AppModule } from '@src/app.module';
+import { AppModule } from './app.module';
 
 const logger = new Logger();
 async function bootstrap() {

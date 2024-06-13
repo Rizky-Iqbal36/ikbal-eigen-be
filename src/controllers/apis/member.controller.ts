@@ -2,9 +2,9 @@ import { Request } from 'express';
 import Joi, { ObjectSchema } from 'joi';
 import { Controller, Req, Post, Get } from '@nestjs/common';
 
-import { MemberService } from '@service/member.service';
 import { BaseController } from '../base.controller';
-import { EFlag } from '@src/interfaces/enum';
+import { MemberService } from '../../services/member.service';
+import { EFlag } from '../../interfaces/enum';
 
 @Controller('member')
 export class MemberController extends BaseController {

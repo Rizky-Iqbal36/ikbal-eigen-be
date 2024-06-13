@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 
-import { BookModel } from '@database/models/book.model';
-import { BorrowHistoryModel } from '@database/models/borrowHistory.model';
+import { BookModel } from '../database/models/book.model';
+import { BorrowHistoryModel } from '../database/models/borrowHistory.model';
 
 type TBookRecord = {
   id: number;

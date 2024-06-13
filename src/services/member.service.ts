@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
-import { MemberRepository } from '@repository/member.repository';
+import { MemberRepository } from '../repositories/member.repository';
 
-import cryptography from '@app/utils/cryptography';
-import { zeroPad } from '@app/utils/modifier';
-import { NotFound } from '@src/app/exception';
-import { EFlag } from '@src/interfaces/enum';
+import cryptography from '../app/utils/cryptography';
+import { zeroPad } from '../app/utils/modifier';
+import { NotFound } from '../app/exception';
+import { EFlag } from '../interfaces/enum';
 
 @Injectable()
 export class MemberService {

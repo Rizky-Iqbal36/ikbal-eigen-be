@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { EFlag } from '@src/interfaces/enum';
-import { IMessageOption, IDetailException, IObject } from '@src/interfaces';
+import { EFlag } from '../../interfaces/enum';
+import { IMessageOption, IDetailException, IObject } from '../../interfaces';
 
 type TDetailException = Omit<IDetailException, 'flag'> & {
   reason?: string;

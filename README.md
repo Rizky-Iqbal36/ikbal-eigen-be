@@ -1,5 +1,10 @@
 ## Use Case
 
+Other APIs are protected using JWT middleware, so you need a JWT token to access them. Here are some ways to retrieve token:
+
+1. Use POST /member to create a member and receive a token.
+2. Use GET /member/token?id=1 to retrieve the token.
+
 - Members can borrow books with conditions
   - [x] Members may not borrow more than 2 books
   - [x] Borrowed books are not borrowed by other members
@@ -17,7 +22,8 @@
 ## Requirements
 
 - [x] it should be use any framework, but prefered [NestJS](https://nestjs.com/) Framework Or [ExpressJS](https://expressjs.com/)
-- [ ] it should be use Swagger as API Documentation
+- [x] it should be use Swagger as API Documentation
+  - swagger [link](https://app.swaggerhub.com/apis-docs/RIZKIIQBAL36/Eigen/1.0.0#)
 - [x] it should be use Database (SQL/NoSQL), using <b>MySQL</b>
 - [x] it should be open sourced on your github repo
 
